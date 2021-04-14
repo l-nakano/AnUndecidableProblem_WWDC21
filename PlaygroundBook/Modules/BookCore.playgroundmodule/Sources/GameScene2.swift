@@ -104,26 +104,36 @@ public class GameScene2: SKScene {
     func touchDown(atPoint pos : CGPoint) {
         
         if dialogBar.contains(pos) {
-            if dialogsGames.keys.contains(currentRound) {
-                for myScene in allScenesDic[currentRound]! {
+            if dialogs.count == 1 {
+                for myScene in allScenesDic[allScenesString[0]]! {
                     myScene.removeFromParent()
                 }
-                for myScene in allScenesDic[allScenesString[0]]! {
-                    addChild(myScene)
-                }
-                labelDialog.text = dialogs.first
-                currentRound = ""
+                dialogs.remove(at: 0)
+                labelResult.text = "GGWP"
+                labelResult.position = CGPoint(x: 0, y: 0)
             }
             else {
-                for myScene in allScenesDic[allScenesString[0]]! {
-                    myScene.removeFromParent()
+                if dialogsGames.keys.contains(currentRound) {
+                    for myScene in allScenesDic[currentRound]! {
+                        myScene.removeFromParent()
+                    }
+                    for myScene in allScenesDic[allScenesString[0]]! {
+                        addChild(myScene)
+                    }
+                    labelDialog.text = dialogs.first
+                    currentRound = ""
                 }
-                allScenesString.remove(at: 0)
-                dialogs.remove(at: 0)
-                for myScene in allScenesDic[allScenesString[0]]! {
-                    addChild(myScene)
+                else {
+                    for myScene in allScenesDic[allScenesString[0]]! {
+                        myScene.removeFromParent()
+                    }
+                    allScenesString.remove(at: 0)
+                    dialogs.remove(at: 0)
+                    for myScene in allScenesDic[allScenesString[0]]! {
+                        addChild(myScene)
+                    }
+                    labelDialog.text = dialogs.first
                 }
-                labelDialog.text = dialogs.first
             }
         }
         

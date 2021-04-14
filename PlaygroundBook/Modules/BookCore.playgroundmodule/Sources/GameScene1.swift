@@ -1,13 +1,13 @@
 import Foundation
 import SpriteKit
 
-public class GameScene: SKScene {
+public class GameScene1: SKScene {
     
     var buttonsR1 = [(Sprite: SKSpriteNode, Selected: Bool, IsAnswer: Bool)]()
     var buttonsR2 = [(Sprite: SKSpriteNode, Selected: Bool, IsAnswer: Bool)]()
     var buttonsR3 = [(Sprite: SKSpriteNode, Selected: Bool, IsAnswer: Bool)]()
     var confirmGame: SKSpriteNode!
-    var round1, round2, round3, calculating, scared, happy, okay, angry, normal, neutral, dialogBar, removeSprite: SKNode!
+    var round1, round2, round3, calculating, scared, happy, okay, angry, normal, neutral, dialogBar: SKNode!
     var labelResult, labelDialog: SKLabelNode!
     var dialogs = ["Aqui tem uma sequência com 10 números, encontre o número 67!",
                    "Vou deixar um pouco mais difícil, está preparado?",
