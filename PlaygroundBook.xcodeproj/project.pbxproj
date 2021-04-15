@@ -24,10 +24,12 @@
 		5EF2F97C2054B6E400191409 /* ManifestPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5EF2F97E2054B6E400191409 /* ManifestPlist.strings */; };
 		5EF2F9AE2054BBF300191409 /* LiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2F9AD2054BBF300191409 /* LiveViewController.swift */; };
 		5EF2F9B72054E6FB00191409 /* Chapters in Copy Book Contents */ = {isa = PBXBuildFile; fileRef = 5EF2F9B62054E6F900191409 /* Chapters */; };
+		AF0E50D02627B696009217A2 /* DialogScene2.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0E50CF2627B696009217A2 /* DialogScene2.swift */; };
+		AF0E50D52627B711009217A2 /* DialogScene2.sks in Resources */ = {isa = PBXBuildFile; fileRef = AF0E50D42627B711009217A2 /* DialogScene2.sks */; };
 		AF8977FC26237DC0004638CA /* GameScene2.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8977FB26237DC0004638CA /* GameScene2.swift */; };
 		AF89780126237E3D004638CA /* GameScene2.sks in Resources */ = {isa = PBXBuildFile; fileRef = AF89780026237E3D004638CA /* GameScene2.sks */; };
-		AFDE2ADF26269CF500AEE297 /* DialogScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDE2ADE26269CF500AEE297 /* DialogScene.swift */; };
-		AFDE2AE726269D3E00AEE297 /* DialogScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = AFDE2AE626269D3E00AEE297 /* DialogScene.sks */; };
+		AFDE2ADF26269CF500AEE297 /* DialogScene1.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDE2ADE26269CF500AEE297 /* DialogScene1.swift */; };
+		AFDE2AE726269D3E00AEE297 /* DialogScene1.sks in Resources */ = {isa = PBXBuildFile; fileRef = AFDE2AE626269D3E00AEE297 /* DialogScene1.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -149,10 +151,12 @@
 		5EF2F9AB2054BBF300191409 /* libBookCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBookCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EF2F9AD2054BBF300191409 /* LiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveViewController.swift; sourceTree = "<group>"; };
 		5EF2F9B62054E6F900191409 /* Chapters */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Chapters; sourceTree = "<group>"; };
+		AF0E50CF2627B696009217A2 /* DialogScene2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogScene2.swift; sourceTree = "<group>"; };
+		AF0E50D42627B711009217A2 /* DialogScene2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = DialogScene2.sks; sourceTree = "<group>"; };
 		AF8977FB26237DC0004638CA /* GameScene2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene2.swift; sourceTree = "<group>"; };
 		AF89780026237E3D004638CA /* GameScene2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene2.sks; sourceTree = "<group>"; };
-		AFDE2ADE26269CF500AEE297 /* DialogScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogScene.swift; sourceTree = "<group>"; };
-		AFDE2AE626269D3E00AEE297 /* DialogScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = DialogScene.sks; sourceTree = "<group>"; };
+		AFDE2ADE26269CF500AEE297 /* DialogScene1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogScene1.swift; sourceTree = "<group>"; };
+		AFDE2AE626269D3E00AEE297 /* DialogScene1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = DialogScene1.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,7 +297,8 @@
 				5E3196F22061DEA40077BBD7 /* LiveViewSupport.swift */,
 				447A2677260036B500C533BC /* GameScene1.swift */,
 				AF8977FB26237DC0004638CA /* GameScene2.swift */,
-				AFDE2ADE26269CF500AEE297 /* DialogScene.swift */,
+				AFDE2ADE26269CF500AEE297 /* DialogScene1.swift */,
+				AF0E50CF2627B696009217A2 /* DialogScene2.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -343,7 +348,8 @@
 				AF89780026237E3D004638CA /* GameScene2.sks */,
 				5E086DCC2051DDAE004D8D25 /* LiveView.storyboard */,
 				5E551EC42371FC3F00784365 /* Assets.xcassets */,
-				AFDE2AE626269D3E00AEE297 /* DialogScene.sks */,
+				AFDE2AE626269D3E00AEE297 /* DialogScene1.sks */,
+				AF0E50D42627B711009217A2 /* DialogScene2.sks */,
 			);
 			path = PrivateResources;
 			sourceTree = "<group>";
@@ -488,7 +494,8 @@
 				447A265B2600305100C533BC /* GameScene1.sks in Resources */,
 				5EF2F97C2054B6E400191409 /* ManifestPlist.strings in Resources */,
 				AF89780126237E3D004638CA /* GameScene2.sks in Resources */,
-				AFDE2AE726269D3E00AEE297 /* DialogScene.sks in Resources */,
+				AF0E50D52627B711009217A2 /* DialogScene2.sks in Resources */,
+				AFDE2AE726269D3E00AEE297 /* DialogScene1.sks in Resources */,
 				5E551EC52371FC3F00784365 /* Assets.xcassets in Resources */,
 				5E086DCA2051DDAE004D8D25 /* LiveView.storyboard in Resources */,
 			);
@@ -563,7 +570,8 @@
 			files = (
 				447A2678260036B500C533BC /* GameScene1.swift in Sources */,
 				AF8977FC26237DC0004638CA /* GameScene2.swift in Sources */,
-				AFDE2ADF26269CF500AEE297 /* DialogScene.swift in Sources */,
+				AFDE2ADF26269CF500AEE297 /* DialogScene1.swift in Sources */,
+				AF0E50D02627B696009217A2 /* DialogScene2.swift in Sources */,
 				5E3196F32061DEA40077BBD7 /* LiveViewSupport.swift in Sources */,
 				5EF2F9AE2054BBF300191409 /* LiveViewController.swift in Sources */,
 			);

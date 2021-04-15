@@ -7,12 +7,14 @@ public class GameScene1: SKScene {
     var buttonsR2 = [(Sprite: SKSpriteNode, Selected: Bool, IsAnswer: Bool)]()
     var buttonsR3 = [(Sprite: SKSpriteNode, Selected: Bool, IsAnswer: Bool)]()
     var confirmGame: SKSpriteNode!
-    var round1, round2, round3, calculating, scared, happy, okay, angry, normal, neutral, dialogBar: SKNode!
+    var round1, round2, round3, calculating, scared, happy, okay, angry, normal, neutral, graph, dialogBar, rAnswer, wAnswer: SKNode!
     var labelResult, labelDialog: SKLabelNode!
     var dialogs = ["Aqui tem uma sequência com 10 números, encontre o número 67!",
                    "Vou deixar um pouco mais difícil, está preparado?",
                    "Último desafio de encontrar números! Vamos se eu consigo dessa vez",
-                   "Você resolveu bem rápido! Poderia deixar eu ganhar uma vez..."]
+                   "Você percebeu que para você não faz diferença quando eu aumento a quantidade de números?",
+                   "Esse é o gráfico do tempo que eu demoro para resolver este problema",
+                   "É por isso que esse é um problema considerado \"fácil\", ou de complexidade P. Por mais que eu demore, ainda consigo resolver"]
     var dialogsGames = ["round1Ok": "Calma lá! Eu nem cheguei na metade ainda! Você conseguiu resolver mais rápido do que eu!",
                         "round1Nok": "Vou te dar uma dica! Os números estão ordenados em ordem crescente",
                         "round2Ok": "Okay... Nem comecei ainda... Acho que você conseguiu entender o que eu estava dizendo",
@@ -35,6 +37,9 @@ public class GameScene1: SKScene {
         dialogBar = self.childNode(withName: "barraFala")
         normal = self.childNode(withName: "normal")
         neutral = self.childNode(withName: "neutro")
+        graph = self.childNode(withName: "grafico")
+        rAnswer = self.childNode(withName: "acertou")
+        wAnswer = self.childNode(withName: "errou")
         round1.removeFromParent()
         round2.removeFromParent()
         round3.removeFromParent()
@@ -44,6 +49,9 @@ public class GameScene1: SKScene {
         angry.removeFromParent()
         normal.removeFromParent()
         neutral.removeFromParent()
+        graph.removeFromParent()
+        rAnswer.removeFromParent()
+        wAnswer.removeFromParent()
         confirmGame = self.childNode(withName: "Confirm") as? SKSpriteNode
         confirmGame.removeFromParent()
         labelResult = self.childNode(withName: "LabelResult") as? SKLabelNode
@@ -51,11 +59,15 @@ public class GameScene1: SKScene {
         labelDialog.text = dialogs.first
         currentRound = ""
         
-        allScenesDic = ["preGame": [happy, dialogBar, labelDialog], "round1": [calculating, round1, confirmGame], "round1Ok" : [scared, dialogBar, labelDialog],
-                        "round1Nok": [happy, dialogBar, labelDialog], "preRound2": [normal, dialogBar, labelDialog], "round2": [calculating, round2, confirmGame],
-                        "round2Ok": [okay, dialogBar, labelDialog], "round2Nok": [happy, dialogBar, labelDialog], "preRound3": [neutral, dialogBar, labelDialog],
-                        "round3": [calculating, round3, confirmGame], "round3Ok": [angry, dialogBar, labelDialog], "round3Nok": [happy, dialogBar, labelDialog]]
-        allScenesString = ["preGame", "round1", "preRound2", "round2", "preRound3", "round3"]
+        allScenesDic = ["preGame": [happy, dialogBar, labelDialog], "round1": [calculating, round1, confirmGame],
+                        "round1Ok" : [scared, dialogBar, labelDialog, rAnswer], "round1Nok": [happy, dialogBar, labelDialog, wAnswer],
+                        "preRound2": [normal, dialogBar, labelDialog], "round2": [calculating, round2, confirmGame],
+                        "round2Ok": [okay, dialogBar, labelDialog, rAnswer], "round2Nok": [happy, dialogBar, labelDialog, wAnswer],
+                        "preRound3": [neutral, dialogBar, labelDialog], "round3": [calculating, round3, confirmGame],
+                        "round3Ok": [angry, dialogBar, labelDialog, rAnswer], "round3Nok": [happy, dialogBar, labelDialog, wAnswer],
+                        "posGame": [normal, dialogBar, labelDialog], "graph": [happy, dialogBar, graph, labelDialog],
+                        "Pproblem": [happy, dialogBar, labelDialog]]
+        allScenesString = ["preGame", "round1", "preRound2", "round2", "preRound3", "round3", "posGame", "graph", "Pproblem"]
         
         for i in 1 ... 10 {
             buttonsR1.append((round1?.childNode(withName: "NotSelecetedG1R\(i)") as! SKSpriteNode, false, false))
@@ -83,8 +95,8 @@ public class GameScene1: SKScene {
     
     func touchDown(atPoint pos : CGPoint) {
         
-        if dialogBar.contains(pos) {
-            if currentRound == "round3Ok" || currentRound == "round3Nok" {
+        if dialogBar.contains(pos) && self.contains(dialogBar) {
+            if dialogs.count == 1 {
                 let scene2 = GameScene2(fileNamed: "GameScene2")!
                 scene2.scaleMode = .aspectFit
                 self.view?.presentScene(scene2)
@@ -94,21 +106,22 @@ public class GameScene1: SKScene {
                     for myScene in allScenesDic[currentRound]! {
                         myScene.removeFromParent()
                     }
-                    for myScene in allScenesDic[allScenesString[0]]! {
+                    for myScene in allScenesDic[allScenesString.first!]! {
                         addChild(myScene)
                     }
                     labelDialog.text = dialogs.first
                     currentRound = ""
                 }
                 else {
-                    for myScene in allScenesDic[allScenesString[0]]! {
+                    for myScene in allScenesDic[allScenesString.first!]! {
                         myScene.removeFromParent()
                     }
                     allScenesString.remove(at: 0)
                     dialogs.remove(at: 0)
-                    for myScene in allScenesDic[allScenesString[0]]! {
+                    for myScene in allScenesDic[allScenesString.first!]! {
                         addChild(myScene)
                     }
+                    labelDialog.text = dialogs.first
                 }
             }
         }
@@ -129,7 +142,7 @@ public class GameScene1: SKScene {
                 }
                 if button.IsAnswer && button.Selected && confirmGame.contains(pos) {
                     labelResult.text = "ACERTOU!"
-                    for myScene in allScenesDic[allScenesString[0]]! {
+                    for myScene in allScenesDic[allScenesString.first!]! {
                         myScene.removeFromParent()
                     }
                     allScenesString.remove(at: 0)
@@ -141,7 +154,7 @@ public class GameScene1: SKScene {
                 }
                 if !button.IsAnswer && button.Selected && confirmGame.contains(pos) {
                     labelResult.text = "FAIL!"
-                    for myScene in allScenesDic[allScenesString[0]]! {
+                    for myScene in allScenesDic[allScenesString.first!]! {
                         myScene.removeFromParent()
                     }
                     allScenesString.remove(at: 0)
@@ -170,7 +183,7 @@ public class GameScene1: SKScene {
                 }
                 if button.IsAnswer && button.Selected && confirmGame.contains(pos) {
                     labelResult.text = "ACERTOU!"
-                    for myScene in allScenesDic[allScenesString[0]]! {
+                    for myScene in allScenesDic[allScenesString.first!]! {
                         myScene.removeFromParent()
                     }
                     allScenesString.remove(at: 0)
@@ -182,7 +195,7 @@ public class GameScene1: SKScene {
                 }
                 if !button.IsAnswer && button.Selected && confirmGame.contains(pos) {
                     labelResult.text = "FAIL!"
-                    for myScene in allScenesDic[allScenesString[0]]! {
+                    for myScene in allScenesDic[allScenesString.first!]! {
                         myScene.removeFromParent()
                     }
                     allScenesString.remove(at: 0)
@@ -211,7 +224,7 @@ public class GameScene1: SKScene {
                 }
                 if button.IsAnswer && button.Selected && confirmGame.contains(pos) {
                     labelResult.text = "ACERTOU!"
-                    for myScene in allScenesDic[allScenesString[0]]! {
+                    for myScene in allScenesDic[allScenesString.first!]! {
                         myScene.removeFromParent()
                     }
                     allScenesString.remove(at: 0)
@@ -223,7 +236,7 @@ public class GameScene1: SKScene {
                 }
                 if !button.IsAnswer && button.Selected && confirmGame.contains(pos) {
                     labelResult.text = "FAIL!"
-                    for myScene in allScenesDic[allScenesString[0]]! {
+                    for myScene in allScenesDic[allScenesString.first!]! {
                         myScene.removeFromParent()
                     }
                     allScenesString.remove(at: 0)

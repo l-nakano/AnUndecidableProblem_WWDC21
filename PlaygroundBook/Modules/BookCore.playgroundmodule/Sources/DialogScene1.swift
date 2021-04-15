@@ -1,7 +1,7 @@
 import Foundation
 import SpriteKit
 
-public class DialogScene: SKScene {
+public class DialogScene1: SKScene {
     
     var happy, thinking, desesperate, normal, macintosh, flash, dialogBar: SKNode!
     var labelDialog: SKLabelNode!
@@ -15,7 +15,21 @@ public class DialogScene: SKScene {
     var allScenes = [[SKNode]]()
     
     override public func didMove(to view: SKView) {
-        allScenes = [[happy], [thinking], [desesperate], [normal], [happy, macintosh], [flash], [normal]]
+        happy = self.childNode(withName: "feliz")
+        thinking = self.childNode(withName: "pensativo")
+        desesperate = self.childNode(withName: "desesperado")
+        normal = self.childNode(withName: "normal")
+        macintosh = self.childNode(withName: "macintosh")
+        flash = self.childNode(withName: "flash")
+        dialogBar = self.childNode(withName: "barraFala")
+        labelDialog = self.childNode(withName: "labelFala") as? SKLabelNode
+        thinking.removeFromParent()
+        desesperate.removeFromParent()
+        normal.removeFromParent()
+        macintosh.removeFromParent()
+        flash.removeFromParent()
+        labelDialog.text = dialogs.first
+        allScenes = [[happy], [thinking], [desesperate], [normal], [happy, macintosh], [happy, flash], [normal], [happy]]
     }
     
     @objc static override public var supportsSecureCoding: Bool {
@@ -25,7 +39,23 @@ public class DialogScene: SKScene {
     }
     
     func touchDown(atPoint pos : CGPoint) {
-        
+        if dialogBar.contains(pos) {
+            if dialogs.count == 1 {
+                let gameScene1 = GameScene1(fileNamed: "GameScene1")!
+                gameScene1.scaleMode = .aspectFit
+                self.view?.presentScene(gameScene1)
+            } else {
+                for myScene in allScenes.first! {
+                    myScene.removeFromParent()
+                }
+                allScenes.remove(at: 0)
+                dialogs.remove(at: 0)
+                for myScene in allScenes.first! {
+                    addChild(myScene)
+                }
+                labelDialog.text = dialogs.first
+            }
+        }
     }
     
     func touchMoved(toPoint pos : CGPoint) {
