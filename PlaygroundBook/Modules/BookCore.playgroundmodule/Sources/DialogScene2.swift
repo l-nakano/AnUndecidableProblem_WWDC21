@@ -23,8 +23,8 @@ public class DialogScene2: SKScene {
     
     var normalSecond, thinking, happy, starEyes, thinkingBalloon, rich, dialogBar: SKNode!
     var labelDialog: SKLabelNode!
-    var dialogs = ["Como você pôde sentir, o segundo desafio demora muito mais do que o primeiro",
-                   "E até hoje, nenhuma pessoa ou máquinas conseguiu encontrar uma solução que torne o problema da mochila um problema P",
+    var dialogs = ["Como você pôde sentir, o problema da mochila demora muito mais do que o desafio de encontrar um número em uma sequência",
+                   "Até hoje, nenhuma pessoa ou máquinas conseguiu encontrar uma solução que torne o problema da mochila um problema P",
                    "Este é considerado um problema indecidível para a ciência, conhecido como P vs NP",
                    "Ficou conhecido como um dos Millennium Prize Problems!",
                    "Caso queira tentar, podemos nos juntar para tentarmos ser os próximos milinários!"]

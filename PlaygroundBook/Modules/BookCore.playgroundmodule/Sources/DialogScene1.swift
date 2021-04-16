@@ -5,13 +5,13 @@ public class DialogScene1: SKScene {
     
     var happy, thinking, desesperate, normal, macintosh, flash, dialogBar: SKNode!
     var labelDialog: SKLabelNode!
-    var dialogs = ["Oi! Eu sou o Cyber! Eu gosto muito de resolver problemas computacionais!",
-                   "Você sabia que existem problemas de cálculo que não tem solução? São chamados problemas indecidíveis",
-                   "Mesmo que muitos pensem que um dia nós iremos resolvê-los, talvez não conseguiremos",
-                   "Existem alguns problemas que já resolvemos ou pelo ainda estamos tentando",
-                   "Meu primo famoso, o Toch, já demorou 18 meses para resolver um deles!",
-                   "Acredite ou não, foi um dos mais rápidos!",
-                   "Esses são os problemas intratáveis. E para você poder entender melhor, irei propor dois desafios"]
+    var dialogs = ["Hi! I'm Cyber! I love solving computer problems!",
+                   "Do you know there are calculus problems that are unsolved? They are called indecidable problems",
+                   "Even if many people think that one day we'lll solve them, maybe we'll not be able to",
+                   "There are some problems that we already solve or we are still trying to",
+                   "My famous cousin, Toch, took 18 months to solve one of them!",
+                   "Believe or not, he was one of the fastest!",
+                   "Those are intractable problems. To help you to understand better, I'll propose two challenges"]
     var allScenes = [[SKNode]]()
     
     override public func didMove(to view: SKView) {

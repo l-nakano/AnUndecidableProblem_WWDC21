@@ -20,8 +20,3 @@ if let scene = DialogScene1(fileNamed: "DialogScene1") {
 
 PlaygroundPage.current.liveView = sceneView
 PlaygroundPage.current.needsIndefiniteExecution = true
-// margem de baixo menor
-// carinha de triste mais para baixo
-// carinho do fail como normal
-// arredondar ponta das estrlas
-// dar dica para o próximo sem falar que é dica
