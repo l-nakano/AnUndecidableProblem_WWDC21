@@ -21,13 +21,13 @@ import SpriteKit
 
 public class DialogScene2: SKScene {
     
-    var normalSecond, thinking, happy, starEyes, thinkingBalloon, rich, dialogBar: SKNode!
+    var normalSecond, thinking, happy, starEyes, iOSwindow, rich, dialogBar: SKNode!
     var labelDialog: SKLabelNode!
-    var dialogs = ["Como você pôde sentir, o problema da mochila demora muito mais do que o desafio de encontrar um número em uma sequência",
-                   "Até hoje, nenhuma pessoa ou máquinas conseguiu encontrar uma solução que torne o problema da mochila um problema P",
-                   "Este é considerado um problema indecidível para a ciência, conhecido como P vs NP",
-                   "Ficou conhecido como um dos Millennium Prize Problems!",
-                   "Caso queira tentar, podemos nos juntar para tentarmos ser os próximos milinários!"]
+    var dialogs = ["How could you feel, the knapsack problem takes too long than the challenge of finding the number",
+                   "No person or computer found a solution that makes the knapsack problem a complex class P",
+                   "This is considered a undecidable problem for the science, known as \"P vs NP\"",
+                   "It is one of the Millenium Prize Problems!",
+                   "If you want to, we can unite to try to be the next milionaires!"]
     var allScenes = [[SKNode]]()
     
     override public func didMove(to view: SKView) {
@@ -36,17 +36,17 @@ public class DialogScene2: SKScene {
         thinking = self.childNode(withName: "pensativo")
         happy = self.childNode(withName: "feliz")
         starEyes = self.childNode(withName: "olhosEstrelas")
-        thinkingBalloon = self.childNode(withName: "balaoPensamento")
+        iOSwindow = self.childNode(withName: "janelaiOS")
         rich = self.childNode(withName: "pensandoRico")
         thinking.removeFromParent()
         happy.removeFromParent()
         starEyes.removeFromParent()
-        thinkingBalloon.removeFromParent()
+        iOSwindow.removeFromParent()
         rich.removeFromParent()
         labelDialog = self.childNode(withName: "labelFala") as? SKLabelNode
         labelDialog.text = dialogs.first
         
-        allScenes = [[normalSecond], [thinking], [happy], [starEyes], [starEyes, thinkingBalloon, rich]]
+        allScenes = [[normalSecond], [thinking], [happy], [starEyes], [iOSwindow, rich, starEyes]]
     }
     
     @objc static override public var supportsSecureCoding: Bool {
@@ -56,7 +56,7 @@ public class DialogScene2: SKScene {
     }
     
     func touchDown(atPoint pos : CGPoint) {
-        if dialogBar.contains(pos) {
+        if self.contains(pos) {
             if dialogs.count == 1 {
 //                let gameScene1 = GameScene1(fileNamed: "GameScene1")!
 //                gameScene1.scaleMode = .aspectFit
@@ -68,7 +68,26 @@ public class DialogScene2: SKScene {
                 allScenes.remove(at: 0)
                 dialogs.remove(at: 0)
                 for myScene in allScenes.first! {
-                    addChild(myScene)
+                    switch myScene.name {
+                    case "janelaiOS":
+                        myScene.alpha = 0
+                        myScene.setScale(0.0)
+                        myScene.position = CGPoint(x: -359, y: -256)
+                        addChild(myScene)
+                        myScene.run(SKAction.scale(to: 0.7, duration: 0.5))
+                        myScene.run(SKAction.fadeIn(withDuration: 0.3))
+                        myScene.run(SKAction.move(to: CGPoint(x: -71.944, y: 86.601), duration: 0.5))
+                    case "pensandoRico":
+                        myScene.alpha = 0
+                        myScene.setScale(0.0)
+                        myScene.position = CGPoint(x: -359, y: -256)
+                        addChild(myScene)
+                        myScene.run(SKAction.scale(to: 0.35, duration: 0.5))
+                        myScene.run(SKAction.fadeIn(withDuration: 0.3))
+                        myScene.run(SKAction.move(to: CGPoint(x: -71.944, y: 68.893), duration: 0.5))
+                    default:
+                        addChild(myScene)
+                    }
                 }
                 labelDialog.text = dialogs.first
             }

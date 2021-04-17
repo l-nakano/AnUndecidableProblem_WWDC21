@@ -7,7 +7,7 @@ public class GameScene1: SKScene {
     var buttonsR2 = [(Sprite: SKSpriteNode, Selected: Bool, IsAnswer: Bool)]()
     var buttonsR3 = [(Sprite: SKSpriteNode, Selected: Bool, IsAnswer: Bool)]()
     var confirmGame: SKSpriteNode!
-    var round1, round2, round3, calculating, scared, happy, okay, angry, normal, neutral, graph, dialogBar, rAnswer, wAnswer: SKNode!
+    var round1, round2, round3, calculating, scared, happy, okay, angry, normal, neutral, graph, dialogBar, rAnswer, wAnswer, iOSwindow: SKNode!
     var labelDialog: SKLabelNode!
     var dialogs = ["I need to find a number I lost in my memory",
                    "I'll show a sequence of numbers, can you find the 67?",
@@ -41,6 +41,7 @@ public class GameScene1: SKScene {
         graph = self.childNode(withName: "grafico")
         rAnswer = self.childNode(withName: "acertou")
         wAnswer = self.childNode(withName: "errou")
+        iOSwindow = self.childNode(withName: "janelaiOS")
         round1.removeFromParent()
         round2.removeFromParent()
         round3.removeFromParent()
@@ -53,20 +54,23 @@ public class GameScene1: SKScene {
         graph.removeFromParent()
         rAnswer.removeFromParent()
         wAnswer.removeFromParent()
+        iOSwindow.removeFromParent()
         confirmGame = self.childNode(withName: "Confirm") as? SKSpriteNode
         confirmGame.removeFromParent()
         labelDialog = self.childNode(withName: "labelFala") as? SKLabelNode
         labelDialog.text = dialogs.first
         currentRound = ""
         
-        allScenesDic = ["preScene": [normal, dialogBar, labelDialog], "preGame": [happy, dialogBar, labelDialog],
-                        "round1": [calculating, round1, confirmGame, dialogBar, labelDialog], "round1Ok" : [scared, dialogBar, labelDialog, rAnswer],
-                        "round1Nok": [normal, dialogBar, labelDialog, wAnswer], "preRound2": [normal, dialogBar, labelDialog],
-                        "round2": [calculating, round2, confirmGame, dialogBar, labelDialog], "round2Ok": [okay, dialogBar, labelDialog, rAnswer],
-                        "round2Nok": [normal, dialogBar, labelDialog, wAnswer], "preRound3": [neutral, dialogBar, labelDialog],
-                        "round3": [calculating, round3, confirmGame, dialogBar, labelDialog], "round3Ok": [angry, dialogBar, labelDialog, rAnswer],
-                        "round3Nok": [normal, dialogBar, labelDialog, wAnswer], "posGame": [normal, dialogBar, labelDialog],
-                        "graph": [happy, dialogBar, graph, labelDialog], "Pproblem": [happy, dialogBar, labelDialog]]
+        allScenesDic = ["preScene": [dialogBar, labelDialog, normal], "preGame": [dialogBar, labelDialog, happy],
+                        "round1": [iOSwindow, round1, confirmGame, dialogBar, labelDialog, calculating],
+                        "round2": [iOSwindow, round2, confirmGame, dialogBar, labelDialog, calculating],
+                        "round3": [iOSwindow, round3, confirmGame, dialogBar, labelDialog, calculating],
+                        "round2Ok": [dialogBar, labelDialog, okay, rAnswer], "round1Ok" : [dialogBar, labelDialog, scared, rAnswer],
+                        "round1Nok": [dialogBar, labelDialog, normal, wAnswer], "preRound2": [dialogBar, labelDialog, normal],
+                        "round2Nok": [dialogBar, labelDialog, normal, wAnswer], "preRound3": [dialogBar, labelDialog, neutral],
+                        "round3Ok": [dialogBar, labelDialog, angry, rAnswer], "round3Nok": [dialogBar, labelDialog, normal, wAnswer],
+                        "posGame": [dialogBar, labelDialog, normal], "graph": [dialogBar, graph, labelDialog, happy],
+                        "Pproblem": [dialogBar, labelDialog, happy]]
         allScenesString = ["preScene", "preGame", "round1", "preRound2", "round2", "preRound3", "round3", "posGame", "graph", "Pproblem"]
         
         for i in 1 ... 10 {
@@ -96,7 +100,7 @@ public class GameScene1: SKScene {
     
     func touchDown(atPoint pos : CGPoint) {
         
-        if dialogBar.contains(pos) && !self.contains(round1) && !self.contains(round2) && !self.contains(round3) {
+        if self.contains(pos) && !self.contains(round1) && !self.contains(round2) && !self.contains(round3) {
             if dialogs.count == 1 {
                 let scene2 = GameScene2(fileNamed: "GameScene2")!
                 scene2.scaleMode = .aspectFit
@@ -119,7 +123,50 @@ public class GameScene1: SKScene {
                     }
                     allScenesString.remove(at: 0)
                     for myScene in allScenesDic[allScenesString.first!]! {
-                        addChild(myScene)
+                        switch myScene.name {
+                        case "janelaiOS":
+                            myScene.alpha = 0
+                            myScene.setScale(0.0)
+                            myScene.position = CGPoint(x: -359, y: -256)
+                            addChild(myScene)
+                            myScene.run(SKAction.scale(to: 0.9, duration: 0.5))
+                            myScene.run(SKAction.fadeIn(withDuration: 0.3))
+                            myScene.run(SKAction.move(to: CGPoint(x: 4.4, y: 200), duration: 0.5))
+                        case "Round1":
+                            myScene.alpha = 0
+                            myScene.setScale(0.0)
+                            myScene.position = CGPoint(x: -359, y: -256)
+                            addChild(myScene)
+                            myScene.run(SKAction.scale(to: 1, duration: 0.5))
+                            myScene.run(SKAction.fadeIn(withDuration: 0.3))
+                            myScene.run(SKAction.move(to: CGPoint(x: -4.778, y: 200), duration: 0.5))
+                        case "Round2":
+                            myScene.alpha = 0
+                            myScene.setScale(0.0)
+                            myScene.position = CGPoint(x: -359, y: -256)
+                            addChild(myScene)
+                            myScene.run(SKAction.scale(to: 1, duration: 0.5))
+                            myScene.run(SKAction.fadeIn(withDuration: 0.3))
+                            myScene.run(SKAction.move(to: CGPoint(x: -4.778, y: 200), duration: 0.5))
+                        case "Round3":
+                            myScene.alpha = 0
+                            myScene.setScale(0.0)
+                            myScene.position = CGPoint(x: -359, y: -256)
+                            addChild(myScene)
+                            myScene.run(SKAction.scale(to: 1, duration: 0.5))
+                            myScene.run(SKAction.fadeIn(withDuration: 0.3))
+                            myScene.run(SKAction.move(to: CGPoint(x: -4.778, y: 200), duration: 0.5))
+                        case "Confirm":
+                            myScene.alpha = 0
+                            myScene.setScale(0.0)
+                            myScene.position = CGPoint(x: -359, y: -256)
+                            addChild(myScene)
+                            myScene.run(SKAction.scale(to: 1, duration: 0.5))
+                            myScene.run(SKAction.fadeIn(withDuration: 0.3))
+                            myScene.run(SKAction.move(to: CGPoint(x: 354.157, y: 34.209), duration: 0.5))
+                        default:
+                            addChild(myScene)
+                        }
                     }
                     if !self.contains(round1) && !self.contains(round2) && !self.contains(round3) {
                         dialogs.remove(at: 0)

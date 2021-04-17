@@ -3,7 +3,7 @@ import SpriteKit
 
 public class DialogScene1: SKScene {
     
-    var happy, thinking, desesperate, normal, macintosh, flash, dialogBar: SKNode!
+    var happy, thinking, desesperate, normal, macintosh, flash, janelaiOS, dialogBar: SKNode!
     var labelDialog: SKLabelNode!
     var dialogs = ["Hi! I'm Cyber! I love solving computer problems!",
                    "Do you know there are calculus problems that are unsolved? They are called indecidable problems",
@@ -22,14 +22,16 @@ public class DialogScene1: SKScene {
         macintosh = self.childNode(withName: "macintosh")
         flash = self.childNode(withName: "flash")
         dialogBar = self.childNode(withName: "barraFala")
+        janelaiOS = self.childNode(withName: "janelaiOS")
         labelDialog = self.childNode(withName: "labelFala") as? SKLabelNode
         thinking.removeFromParent()
         desesperate.removeFromParent()
         normal.removeFromParent()
         macintosh.removeFromParent()
         flash.removeFromParent()
+        janelaiOS.removeFromParent()
         labelDialog.text = dialogs.first
-        allScenes = [[happy], [thinking], [desesperate], [normal], [happy, macintosh], [happy, flash], [normal], [happy]]
+        allScenes = [[happy], [thinking], [desesperate], [normal], [janelaiOS, macintosh, happy], [janelaiOS, flash, happy], [normal], [happy]]
     }
     
     @objc static override public var supportsSecureCoding: Bool {
@@ -39,7 +41,7 @@ public class DialogScene1: SKScene {
     }
     
     func touchDown(atPoint pos : CGPoint) {
-        if dialogBar.contains(pos) {
+        if self.contains(pos) {
             if dialogs.count == 1 {
                 let gameScene1 = GameScene1(fileNamed: "GameScene1")!
                 gameScene1.scaleMode = .aspectFit
@@ -51,7 +53,34 @@ public class DialogScene1: SKScene {
                 allScenes.remove(at: 0)
                 dialogs.remove(at: 0)
                 for myScene in allScenes.first! {
-                    addChild(myScene)
+                    switch myScene.name {
+                    case "janelaiOS":
+                        myScene.alpha = 0
+                        myScene.setScale(0.0)
+                        myScene.position = CGPoint(x: -359, y: -256)
+                        addChild(myScene)
+                        myScene.run(SKAction.scale(to: 0.6, duration: 0.5))
+                        myScene.run(SKAction.fadeIn(withDuration: 0.3))
+                        myScene.run(SKAction.move(to: CGPoint(x: -116.138, y: 57.2), duration: 0.5))
+                    case "macintosh":
+                        myScene.alpha = 0
+                        myScene.setScale(0.0)
+                        myScene.position = CGPoint(x: -359, y: -256)
+                        addChild(myScene)
+                        myScene.run(SKAction.scale(to: 0.35, duration: 0.5))
+                        myScene.run(SKAction.fadeIn(withDuration: 0.3))
+                        myScene.run(SKAction.move(to: CGPoint(x: -121.138, y: 35), duration: 0.5))
+                    case "flash":
+                        myScene.alpha = 0
+                        myScene.setScale(0.0)
+                        myScene.position = CGPoint(x: -359, y: -256)
+                        addChild(myScene)
+                        myScene.run(SKAction.scale(to: 0.35, duration: 0.5))
+                        myScene.run(SKAction.fadeIn(withDuration: 0.3))
+                        myScene.run(SKAction.move(to: CGPoint(x: -116.138, y: 35), duration: 0.5))
+                    default:
+                        addChild(myScene)
+                    }
                 }
                 labelDialog.text = dialogs.first
             }
