@@ -5,13 +5,13 @@ public class DialogScene1: SKScene {
     
     var happy, thinking, desesperate, normal, macintosh, flash, janelaiOS, dialogBar: SKNode!
     var labelDialog: SKLabelNode!
-    var dialogs = ["Hi! I'm Cyber! I love solving computer problems!",
-                   "Do you know there are calculus problems that are unsolved? They are called indecidable problems",
-                   "Even if many people think that one day we'lll solve them, maybe we'll not be able to",
-                   "There are some problems that we already solve or we are still trying to",
+    var dialogs = ["Hi! I'm Cyber, I love solving computer problems!",
+                   "Do you know there are calculus problems that are unsolved? They are called undecidable problems.",
+                   "Even if many people think that one day we'll solve them, maybe we'll not be able to.",
+                   "There are some problems that we already solve or we are still trying to.",
                    "My famous cousin, Toch, took 18 months to solve one of them!",
                    "Believe or not, he was one of the fastest!",
-                   "Those are intractable problems. To help you to understand better, I'll propose two challenges"]
+                   "Those are intractable problems. To help you to understand better, I'll propose two challenges."]
     var allScenes = [[SKNode]]()
     
     override public func didMove(to view: SKView) {
@@ -61,7 +61,7 @@ public class DialogScene1: SKScene {
                         addChild(myScene)
                         myScene.run(SKAction.scale(to: 0.6, duration: 0.5))
                         myScene.run(SKAction.fadeIn(withDuration: 0.3))
-                        myScene.run(SKAction.move(to: CGPoint(x: -116.138, y: 57.2), duration: 0.5))
+                        myScene.run(SKAction.move(to: CGPoint(x: 324.9, y: 256.036), duration: 0.5))
                     case "macintosh":
                         myScene.alpha = 0
                         myScene.setScale(0.0)
@@ -69,7 +69,7 @@ public class DialogScene1: SKScene {
                         addChild(myScene)
                         myScene.run(SKAction.scale(to: 0.35, duration: 0.5))
                         myScene.run(SKAction.fadeIn(withDuration: 0.3))
-                        myScene.run(SKAction.move(to: CGPoint(x: -121.138, y: 35), duration: 0.5))
+                        myScene.run(SKAction.move(to: CGPoint(x: 324.9, y: 240), duration: 0.5))
                     case "flash":
                         myScene.alpha = 0
                         myScene.setScale(0.0)
@@ -77,7 +77,7 @@ public class DialogScene1: SKScene {
                         addChild(myScene)
                         myScene.run(SKAction.scale(to: 0.35, duration: 0.5))
                         myScene.run(SKAction.fadeIn(withDuration: 0.3))
-                        myScene.run(SKAction.move(to: CGPoint(x: -116.138, y: 35), duration: 0.5))
+                        myScene.run(SKAction.move(to: CGPoint(x: 329.7, y: 239.825), duration: 0.5))
                     default:
                         addChild(myScene)
                     }

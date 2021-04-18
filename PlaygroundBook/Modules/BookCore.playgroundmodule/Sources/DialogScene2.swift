@@ -21,13 +21,14 @@ import SpriteKit
 
 public class DialogScene2: SKScene {
     
-    var normalSecond, thinking, happy, starEyes, iOSwindow, rich, dialogBar: SKNode!
+    var normalSecond, thinking, happy, starEyes, iOSwindow, rich, bye, dialogBar: SKNode!
     var labelDialog: SKLabelNode!
-    var dialogs = ["How could you feel, the knapsack problem takes too long than the challenge of finding the number",
-                   "No person or computer found a solution that makes the knapsack problem a complex class P",
-                   "This is considered a undecidable problem for the science, known as \"P vs NP\"",
+    var dialogs = ["How could you feel, the knapsack problem takes too long than the challenge of finding the number.",
+                   "No person or computer found a solution that makes the knapsack problem a complex class P.",
+                   "This is considered a undecidable problem for the science, known as \"P vs NP\".",
                    "It is one of the Millenium Prize Problems!",
-                   "If you want to, we can unite to try to be the next milionaires!"]
+                   "If you want to, we can unite to try to be the next milionaires!",
+                   "I'm very happy to show to you one of my passions. I hope one day show the others! Thank you!"]
     var allScenes = [[SKNode]]()
     
     override public func didMove(to view: SKView) {
@@ -38,15 +39,17 @@ public class DialogScene2: SKScene {
         starEyes = self.childNode(withName: "olhosEstrelas")
         iOSwindow = self.childNode(withName: "janelaiOS")
         rich = self.childNode(withName: "pensandoRico")
+        bye = self.childNode(withName: "bye")
         thinking.removeFromParent()
         happy.removeFromParent()
         starEyes.removeFromParent()
         iOSwindow.removeFromParent()
         rich.removeFromParent()
+        bye.removeFromParent()
         labelDialog = self.childNode(withName: "labelFala") as? SKLabelNode
         labelDialog.text = dialogs.first
         
-        allScenes = [[normalSecond], [thinking], [happy], [starEyes], [iOSwindow, rich, starEyes]]
+        allScenes = [[normalSecond], [thinking], [happy], [starEyes], [iOSwindow, rich, starEyes], [bye]]
     }
     
     @objc static override public var supportsSecureCoding: Bool {
@@ -76,7 +79,7 @@ public class DialogScene2: SKScene {
                         addChild(myScene)
                         myScene.run(SKAction.scale(to: 0.7, duration: 0.5))
                         myScene.run(SKAction.fadeIn(withDuration: 0.3))
-                        myScene.run(SKAction.move(to: CGPoint(x: -71.944, y: 86.601), duration: 0.5))
+                        myScene.run(SKAction.move(to: CGPoint(x: 324.9, y: 256.036), duration: 0.5))
                     case "pensandoRico":
                         myScene.alpha = 0
                         myScene.setScale(0.0)
@@ -84,7 +87,7 @@ public class DialogScene2: SKScene {
                         addChild(myScene)
                         myScene.run(SKAction.scale(to: 0.35, duration: 0.5))
                         myScene.run(SKAction.fadeIn(withDuration: 0.3))
-                        myScene.run(SKAction.move(to: CGPoint(x: -71.944, y: 68.893), duration: 0.5))
+                        myScene.run(SKAction.move(to: CGPoint(x: 324.9, y: 256.036), duration: 0.5))
                     default:
                         addChild(myScene)
                     }

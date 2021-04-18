@@ -7,19 +7,22 @@ public class GameScene1: SKScene {
     var buttonsR2 = [(Sprite: SKSpriteNode, Selected: Bool, IsAnswer: Bool)]()
     var buttonsR3 = [(Sprite: SKSpriteNode, Selected: Bool, IsAnswer: Bool)]()
     var confirmGame: SKSpriteNode!
-    var round1, round2, round3, calculating, scared, happy, okay, angry, normal, neutral, graph, dialogBar, rAnswer, wAnswer, iOSwindow: SKNode!
+    var round1, round2, round3, calculating, scared, happy, okay, angry, normal, neutral, graph, dialogBar, rAnswer, wAnswer, iOSwindow, graphWindows: SKNode!
     var labelDialog: SKLabelNode!
-    var dialogs = ["I need to find a number I lost in my memory",
+    var dialogs = ["I need to find a number I lost in my memory.",
+                   "I'll show a sequence of numbers, can you find the 67?",
                    "I'll show a sequence of numbers, can you find the 67?",
                    "I'll let it a little harder, are you ready?",
-                   "Last challenge of finding the number! Let's see if I can do it this time",
+                   "Now it is a sequence of 20 numbers, where is the 67?",
+                   "Last challenge of finding the number! Let's see if I can do it this time.",
+                   "30 numbers in that sequence, can you find the number 67?",
                    "Did you notice that it makes no difference to you when I increase the quantity of numbers?",
-                   "This is the graph of the time it takes me to solve this problem",
-                   "That's why this problem is considered \"easy\", or complex class P"]
+                   "This is the graph of the time it takes me to solve this problem.",
+                   "That's why this problem is considered \"easy\", or complex class P."]
     var dialogsGames = ["round1Ok": "Calm down! I didn't even reach the half! You solved it much faster than I did!",
-                        "round1Nok": "It wasn't the 67. The numbers are in ascending order",
-                        "round2Ok": "Okay... You're really fast... I think you got what I'm talking about",
-                        "round2Nok": "That wasn't the right answer. Note the pattern and don't be hurry",
+                        "round1Nok": "It wasn't the 67. The numbers are in ascending order.",
+                        "round2Ok": "Okay... You're really fast... I think you got what I'm talking about.",
+                        "round2Nok": "That wasn't the right answer. Note the pattern and don't be hurry.",
                         "round3Ok": "You solved it too fast! You should let me win once...",
                         "round3Nok": "Not the answer, but it's ok, it was just a slip!"]
     var allScenesDic = [String:[SKNode]]()
@@ -44,6 +47,7 @@ public class GameScene1: SKScene {
         rAnswer = self.childNode(withName: "acertou")
         wAnswer = self.childNode(withName: "errou")
         iOSwindow = self.childNode(withName: "janelaiOS")
+        graphWindows = self.childNode(withName: "janelaGraph")
         round1.removeFromParent()
         round2.removeFromParent()
         round3.removeFromParent()
@@ -57,6 +61,7 @@ public class GameScene1: SKScene {
         rAnswer.removeFromParent()
         wAnswer.removeFromParent()
         iOSwindow.removeFromParent()
+        graphWindows.removeFromParent()
         confirmGame = self.childNode(withName: "Confirm") as? SKSpriteNode
         confirmGame.removeFromParent()
         labelDialog = self.childNode(withName: "labelFala") as? SKLabelNode
@@ -71,7 +76,7 @@ public class GameScene1: SKScene {
                         "round1Nok": [dialogBar, labelDialog, normal, wAnswer], "preRound2": [dialogBar, labelDialog, normal],
                         "round2Nok": [dialogBar, labelDialog, normal, wAnswer], "preRound3": [dialogBar, labelDialog, neutral],
                         "round3Ok": [dialogBar, labelDialog, angry, rAnswer], "round3Nok": [dialogBar, labelDialog, normal, wAnswer],
-                        "posGame": [dialogBar, labelDialog, normal], "graph": [dialogBar, graph, labelDialog, happy],
+                        "posGame": [dialogBar, labelDialog, normal], "graph": [dialogBar, graphWindows, graph, labelDialog, happy],
                         "Pproblem": [dialogBar, labelDialog, happy]]
         allScenesString = ["preScene", "preGame", "round1", "preRound2", "round2", "preRound3", "round3", "posGame", "graph", "Pproblem"]
         
@@ -170,13 +175,27 @@ public class GameScene1: SKScene {
                             myScene.run(SKAction.scale(to: 1, duration: 0.5))
                             myScene.run(SKAction.fadeIn(withDuration: 0.3))
                             myScene.run(SKAction.move(to: CGPoint(x: 354.157, y: 34.209), duration: 0.5))
+                        case "janelaGraph":
+                            myScene.alpha = 0
+                            myScene.setScale(0.0)
+                            myScene.position = CGPoint(x: -359, y: -256)
+                            addChild(myScene)
+                            myScene.run(SKAction.scale(to: 0.85, duration: 0.5))
+                            myScene.run(SKAction.fadeIn(withDuration: 0.3))
+                            myScene.run(SKAction.move(to: CGPoint(x: 11.199, y: 186.424), duration: 0.5))
+                        case "graph1":
+                            myScene.alpha = 0
+                            myScene.setScale(0.0)
+                            myScene.position = CGPoint(x: -359, y: -256)
+                            addChild(myScene)
+                            myScene.run(SKAction.scale(to: 0.9, duration: 0.5))
+                            myScene.run(SKAction.fadeIn(withDuration: 0.3))
+                            myScene.run(SKAction.move(to: CGPoint(x: 11.463, y: 165.65), duration: 0.5))
                         default:
                             addChild(myScene)
                         }
                     }
-                    if !self.contains(round1) && !self.contains(round2) && !self.contains(round3) {
-                        dialogs.remove(at: 0)
-                    }
+                    dialogs.remove(at: 0)
                     labelDialog.text = dialogs.first
                 }
             }
@@ -331,11 +350,11 @@ public class GameScene1: SKScene {
     }
     
     override public func update(_ currentTime: TimeInterval) {
-        if self.contains(graph) && re < 600 {
+        if self.contains(graph) && graph.position.x >= 11.463 && re < 600 {
             let circle = SKShapeNode(circleOfRadius: 5)
             circle.fillColor = .red
             circle.strokeColor = .red
-            circle.position = CGPoint(x: re - 300, y: 11*log(re) + 95)
+            circle.position = CGPoint(x: re - 300, y: 11*log(re) + 55)
             graphShapeNode.append(circle)
             addChild(graphShapeNode.last!)
             re += 2.5

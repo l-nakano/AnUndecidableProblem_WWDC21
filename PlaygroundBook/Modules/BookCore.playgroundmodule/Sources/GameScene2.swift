@@ -13,22 +13,25 @@ public class GameScene2: SKScene {
     var itemsRound1: [(Sprite: (Box: SKSpriteNode, Shadow: SKSpriteNode), isAnswer: Bool, Selected: Bool)]! = []
     var itemsRound2: [(Sprite: (Box: SKSpriteNode, Shadow: SKSpriteNode), isAnswer: Bool, Selected: Bool)]! = []
     var itemsRound3: [(Sprite: (Box: SKSpriteNode, Shadow: SKSpriteNode), isAnswer: Bool, Selected: Bool)]! = []
-    var round1, round2, round3, nextScene, calculating, relived, totalRelived, happy, rascal, normal, normalSfried, sFried, fried, desesperate, graph, dialogBar, rAnswer, wAnswer, iOSwindow, iOSwindowR1: SKNode!
+    var round1, round2, round3, nextScene, calculating, relived, totalRelived, happy, rascal, normal, normalSfried, sFried, fried, desesperate, graph, dialogBar, rAnswer, wAnswer, iOSwindow, iOSwindowR1, graphWindow: SKNode!
     var confirmGame: SKSpriteNode!
     var labelDialog: SKLabelNode!
     var allScenesDic = [String:[SKNode]]()
-    var dialogs = ["Now we'll face a more complicated challenge! It is known as \"Knapsack Problem\"",
+    var dialogs = ["Now we'll face a more complicated challenge! It is known as \"Knapsack Problem\".",
                    "I have 4 boxes that are too heavy for my knapsack!",
-                   "I have to get as many boxes as possible and the higher value ($), without exceed the capacity",
+                   "I have to get as many boxes as possible and the higher value ($), without exceed the capacity.",
+                   "I have to get as many boxes as possible and the higher value ($), without exceed the capacity.",
                    "As I already said, I like challenges! I'll get another one for us!",
+                   "I have to get as many boxes as possible and the higher value ($), without exceed the capacity.",
                    "Uff! I almost didn't get it! I'm feeling my temperature raise! How do you feel?",
-                   "Ok, I primise that one will be the last one! Let's boost that challenge!",
+                   "Ok, I promise that one will be the last one! Let's boost that challenge!",
+                   "I have to get as many boxes as possible and the higher value ($), without exceed the capacity.",
                    "If I was hot, now I'm boiling! Why did I have this idea?",
-                   "That was hard, wasn't it? If I increase the number of items, the challenge became more complex",
-                   "This is the graph of the time it takes me to solve this challenge",
-                   "That's one reason that make the knapsack problem \"hard\", or how they say around, complex class NP"]
+                   "That was hard, wasn't it? If I increase the number of items, the challenge became more complex.",
+                   "This is the graph of the time it takes me to solve this challenge.",
+                   "That's one reason that make the knapsack problem \"hard\", or how they say around, complex class NP."]
     var dialogsGames = ["round1Ok": "I had to occupy good part of my memory to solve it, but I got it either!",
-                        "round1Nok": "You didn't select the right boxes. Think in the value ($) per lb"]
+                        "round1Nok": "You didn't select the right boxes. Think in the value ($) per lb."]
     var allScenesString = [String]()
     var currentRound: String!
     var graphShapeNode: [SKShapeNode]! = []
@@ -54,6 +57,7 @@ public class GameScene2: SKScene {
         desesperate = self.childNode(withName: "desesperado")
         iOSwindow = self.childNode(withName: "janelaiOS")
         iOSwindowR1 = self.childNode(withName: "janelaiOSm2")
+        graphWindow = self.childNode(withName: "janelaGrafico")
         round1.removeFromParent()
         round2.removeFromParent()
         round3.removeFromParent()
@@ -71,6 +75,7 @@ public class GameScene2: SKScene {
         desesperate.removeFromParent()
         iOSwindow.removeFromParent()
         iOSwindowR1.removeFromParent()
+        graphWindow.removeFromParent()
         confirmGame = self.childNode(withName: "Confirm") as? SKSpriteNode
         confirmGame.removeFromParent()
         labelDialog = self.childNode(withName: "labelFala") as? SKLabelNode
@@ -85,7 +90,7 @@ public class GameScene2: SKScene {
                         "preRound2": [dialogBar, labelDialog, happy], "round2": [iOSwindow, round2, confirmGame, dialogBar, labelDialog, calculating],
                         "posRound2": [dialogBar, labelDialog, sFried], "preRound3": [dialogBar, labelDialog, normalSfried],
                         "round3": [iOSwindow, round3, confirmGame, dialogBar, labelDialog, calculating], "posRound3": [dialogBar, labelDialog, fried],
-                        "posGame": [dialogBar, labelDialog, totalRelived], "graph": [dialogBar, labelDialog, graph, happy],]
+                        "posGame": [dialogBar, labelDialog, totalRelived], "graph": [dialogBar, labelDialog, graphWindow, graph, happy],]
         allScenesString = ["preGame", "knapProblem", "gameInit", "round1", "preRound2", "round2", "posRound2", "preRound3", "round3", "posRound3", "posGame", "graph", "npProblem"]
         
         for i in 1 ... 4 {
@@ -200,6 +205,22 @@ public class GameScene2: SKScene {
                             myScene.run(SKAction.scale(to: 1, duration: 0.5))
                             myScene.run(SKAction.fadeIn(withDuration: 0.3))
                             myScene.run(SKAction.move(to: CGPoint(x: -11.196, y: 194.291), duration: 0.5))
+                        case "janelaGrafico":
+                            myScene.alpha = 0
+                            myScene.setScale(0.0)
+                            myScene.position = CGPoint(x: -359, y: -256)
+                            addChild(myScene)
+                            myScene.run(SKAction.scale(to: 1.25, duration: 0.5))
+                            myScene.run(SKAction.fadeIn(withDuration: 0.3))
+                            myScene.run(SKAction.move(to: CGPoint(x: 0.4, y: 196.446), duration: 0.5))
+                        case "grafico2":
+                            myScene.alpha = 0
+                            myScene.setScale(0.0)
+                            myScene.position = CGPoint(x: -359, y: -256)
+                            addChild(myScene)
+                            myScene.run(SKAction.scale(to: 0.7, duration: 0.5))
+                            myScene.run(SKAction.fadeIn(withDuration: 0.3))
+                            myScene.run(SKAction.move(to: CGPoint(x: 0.4, y: 156.09), duration: 0.5))
                         case "Confirm":
                             if allScenesString.contains("round1") {
                                 myScene.alpha = 0
@@ -222,9 +243,7 @@ public class GameScene2: SKScene {
                             addChild(myScene)
                         }
                     }
-                    if !self.contains(round1) && !self.contains(round2) && !self.contains(round3) {
-                        dialogs.remove(at: 0)
-                    }
+                    dialogs.remove(at: 0)
                     labelDialog.text = dialogs.first
                 }
             }
@@ -394,11 +413,11 @@ public class GameScene2: SKScene {
     }
     
     override public func update(_ currentTime: TimeInterval) {
-        if self.contains(graph) && re < 8.65 {
+        if self.contains(graph) && graph.position.x >= 0.4 && re < 8.65 {
             let circle = SKShapeNode(circleOfRadius: 5)
             circle.fillColor = .red
             circle.strokeColor = .red
-            circle.position = CGPoint(x: re*10 - 74, y: pow(2.0, re) + 5)
+            circle.position = CGPoint(x: re*10 - 74, y: pow(2.0, re) - 45)
             graphShapeNode.append(circle)
             addChild(graphShapeNode.last!)
             re += 0.02
