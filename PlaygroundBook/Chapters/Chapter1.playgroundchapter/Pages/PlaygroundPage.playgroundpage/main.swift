@@ -13,7 +13,7 @@ import UIKit
 import BookCore
 
 let sceneView = SKView(frame: CGRect(x: 0, y: 0, width: 1366, height: 1024))
-if let scene = DialogScene1(fileNamed: "DialogScene1") {
+if let scene = IntroScene(fileNamed: "IntroScene") {
     scene.scaleMode = .aspectFit
     sceneView.presentScene(scene)
 }
