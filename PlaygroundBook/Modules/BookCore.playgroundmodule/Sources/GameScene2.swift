@@ -31,6 +31,8 @@ public class GameScene2: SKScene {
                         "round1Nok": "You didn't select the right boxes. Think in the value ($) per lb"]
     var allScenesString = [String]()
     var currentRound: String!
+    var graphShapeNode: [SKShapeNode]! = []
+    var re = 0.0
     
     override public func didMove(to view: SKView) {
         round1 = self.childNode(withName: "Round1")
@@ -46,7 +48,7 @@ public class GameScene2: SKScene {
         normal = self.childNode(withName: "normal")
         dialogBar = self.childNode(withName: "barraFala")
         totalRelived = self.childNode(withName: "alivioTotal")
-        graph = self.childNode(withName: "grafico")
+        graph = self.childNode(withName: "grafico2")
         rAnswer = self.childNode(withName: "acertou")
         wAnswer = self.childNode(withName: "errou")
         desesperate = self.childNode(withName: "desesperado")
@@ -129,6 +131,12 @@ public class GameScene2: SKScene {
                 self.view?.presentScene(dialogScene2)
             }
             else {
+                if !graphShapeNode.isEmpty {
+                    for shapeNode in graphShapeNode {
+                        shapeNode.removeFromParent()
+                    }
+                    graphShapeNode.removeAll()
+                }
                 if dialogsGames.keys.contains(currentRound) {
                     for myScene in allScenesDic[currentRound]! {
                         myScene.removeFromParent()
@@ -213,14 +221,6 @@ public class GameScene2: SKScene {
                         default:
                             addChild(myScene)
                         }
-//                        if myScene.name == "Confirm" {
-//                            if allScenesString.contains("round1") {
-//                                myScene.position = CGPoint(x: 280.121, y: 26.8)
-//                            } else {
-//                                myScene.position = CGPoint(x: 431.895, y: 36.561)
-//                            }
-//                        }
-                        
                     }
                     if !self.contains(round1) && !self.contains(round2) && !self.contains(round3) {
                         dialogs.remove(at: 0)
@@ -394,6 +394,14 @@ public class GameScene2: SKScene {
     }
     
     override public func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
+        if self.contains(graph) && re < 8.65 {
+            let circle = SKShapeNode(circleOfRadius: 5)
+            circle.fillColor = .red
+            circle.strokeColor = .red
+            circle.position = CGPoint(x: re*10 - 74, y: pow(2.0, re) + 5)
+            graphShapeNode.append(circle)
+            addChild(graphShapeNode.last!)
+            re += 0.02
+        }
     }
 }

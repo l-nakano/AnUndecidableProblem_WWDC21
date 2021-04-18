@@ -112,6 +112,6 @@ public class DialogScene1: SKScene {
     }
     
     override public func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
+
     }
 }

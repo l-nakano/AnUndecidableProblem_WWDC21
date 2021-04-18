@@ -25,6 +25,8 @@ public class GameScene1: SKScene {
     var allScenesDic = [String:[SKNode]]()
     var allScenesString = [String]()
     var currentRound: String!
+    var graphShapeNode: [SKShapeNode]! = []
+    var re = 0.0
     
     override public func didMove(to view: SKView) {
         round1 = self.childNode(withName: "Round1")
@@ -38,7 +40,7 @@ public class GameScene1: SKScene {
         dialogBar = self.childNode(withName: "barraFala")
         normal = self.childNode(withName: "normal")
         neutral = self.childNode(withName: "neutro")
-        graph = self.childNode(withName: "grafico")
+        graph = self.childNode(withName: "graph1")
         rAnswer = self.childNode(withName: "acertou")
         wAnswer = self.childNode(withName: "errou")
         iOSwindow = self.childNode(withName: "janelaiOS")
@@ -88,8 +90,6 @@ public class GameScene1: SKScene {
             buttonsR3.append((round3?.childNode(withName: "NotSelecetedG1R\(i)") as! SKSpriteNode, false, false))
         }
         buttonsR3[16].IsAnswer = true
-        
-        // self.view?.presentScene(GameScene(fileNamed: "GameScene"), transition: SKTransition.fade(withDuration: TimeInterval(1.5))) -> apresenta a scene
     }
     
     @objc static override public var supportsSecureCoding: Bool {
@@ -107,6 +107,12 @@ public class GameScene1: SKScene {
                 self.view?.presentScene(scene2)
             }
             else {
+                if !graphShapeNode.isEmpty {
+                    for shapeNode in graphShapeNode {
+                        shapeNode.removeFromParent()
+                    }
+                    graphShapeNode.removeAll()
+                }
                 if dialogsGames.keys.contains(currentRound) {
                     for myScene in allScenesDic[currentRound]! {
                         myScene.removeFromParent()
@@ -298,23 +304,6 @@ public class GameScene1: SKScene {
                 }
             }
         }
-        
-        // Função que exibe os textos
-//            func showText(text: String, time: Double){
-//                pictureBox = true
-//                let hello = Label(text: text, color: #colorLiteral(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0), font: .ChalkDuster, size: 23, name: "hello")
-//                hello.position = CGPoint(x: 375, y: 1000)
-//                hello.zPosition = 10
-//                let helloFadeIn = SKAction.fadeIn(withDuration: 1) // Fade in para aparecer
-//                let helloWait2 = SKAction.wait(forDuration: time) // Fica visível pelo tempo que foi colocado no time
-//                let helloFadeOut = SKAction.fadeOut(withDuration: 0.5) // Fade out para desaparecer
-//                let helloSequence = SKAction.sequence([helloFadeIn,
-//                                                       helloWait2, helloFadeOut])
-//                self.addChild(hello)
-//                hello.run(helloSequence)
-//                // Afirma que não há um texto na tela
-//                pictureBox = false
-//            }
     }
     
     func touchMoved(toPoint pos : CGPoint) {
@@ -342,6 +331,14 @@ public class GameScene1: SKScene {
     }
     
     override public func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
+        if self.contains(graph) && re < 600 {
+            let circle = SKShapeNode(circleOfRadius: 5)
+            circle.fillColor = .red
+            circle.strokeColor = .red
+            circle.position = CGPoint(x: re - 300, y: 11*log(re) + 95)
+            graphShapeNode.append(circle)
+            addChild(graphShapeNode.last!)
+            re += 2.5
+        }
     }
 }
