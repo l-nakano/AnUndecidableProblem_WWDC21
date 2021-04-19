@@ -105,7 +105,7 @@ public class GameScene1: SKScene {
     
     func touchDown(atPoint pos : CGPoint) {
         
-        if self.contains(pos) && !self.contains(round1) && !self.contains(round2) && !self.contains(round3) {
+        if self.contains(pos) && !self.contains(round1) && !self.contains(round2) && !self.contains(round3) && (!self.contains(graph) || re >= 600) {
             if dialogs.count == 1 {
                 let scene2 = GameScene2(fileNamed: "GameScene2")!
                 scene2.scaleMode = .aspectFit

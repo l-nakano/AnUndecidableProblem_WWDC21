@@ -19,13 +19,13 @@ public class GameScene2: SKScene {
     var allScenesDic = [String:[SKNode]]()
     var dialogs = ["Now we'll face a more complicated challenge! It is known as \"Knapsack Problem\".",
                    "I have 4 boxes that are too heavy for my knapsack!",
-                   "I have to get as many boxes as possible and the higher value ($), without exceed the capacity.",
-                   "I have to get as many boxes as possible and the higher value ($), without exceed the capacity.",
+                   "I have to get as many boxes as possible and the higher value ($), without exceeding the capacity.",
+                   "I have to get as many boxes as possible and the higher value ($), without exceeding the capacity.",
                    "As I already said, I like challenges! I'll get another one for us!",
-                   "I have to get as many boxes as possible and the higher value ($), without exceed the capacity.",
+                   "I have to get as many boxes as possible and the higher value ($), without exceeding the capacity.",
                    "Uff! I almost didn't get it! I'm feeling my temperature raise! How do you feel?",
                    "Ok, I promise that one will be the last one! Let's boost that challenge!",
-                   "I have to get as many boxes as possible and the higher value ($), without exceed the capacity.",
+                   "I have to get as many boxes as possible and the higher value ($), without exceeding the capacity.",
                    "If I was hot, now I'm boiling! Why did I have this idea?",
                    "That was hard, wasn't it? If I increase the number of items, the challenge became more complex.",
                    "This is the graph of the time it takes me to solve this challenge.",
@@ -129,7 +129,7 @@ public class GameScene2: SKScene {
     
     func touchDown(atPoint pos : CGPoint) {
         
-        if self.contains(pos) && !self.contains(round1) && !self.contains(round2) && !self.contains(round3) {
+        if self.contains(pos) && !self.contains(round1) && !self.contains(round2) && !self.contains(round3) && (!self.contains(graph) || re >= 8.65) {
             if dialogs.count == 1 {
                 let dialogScene2 = DialogScene2(fileNamed: "DialogScene2")!
                 dialogScene2.scaleMode = .aspectFit
