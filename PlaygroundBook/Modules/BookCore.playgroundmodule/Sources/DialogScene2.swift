@@ -47,7 +47,12 @@ public class DialogScene2: SKScene {
         rich.removeFromParent()
         bye.removeFromParent()
         labelDialog = self.childNode(withName: "labelFala") as? SKLabelNode
-        labelDialog.text = dialogs.first
+        GSAudio.sharedInstance.playSound(soundFileName: "Tink", fileExtension: "aiff")
+        labelDialog.text = ""
+        for label in dialogs.first! {
+            labelDialog.text! += "\(label)"
+            RunLoop.current.run(until: Date()+0.03)
+        }
         
         allScenes = [[normalSecond], [thinking], [happy], [starEyes], [iOSwindow, rich, starEyes], [bye]]
     }
@@ -80,6 +85,7 @@ public class DialogScene2: SKScene {
                         myScene.run(SKAction.scale(to: 0.7, duration: 0.5))
                         myScene.run(SKAction.fadeIn(withDuration: 0.3))
                         myScene.run(SKAction.move(to: CGPoint(x: 324.9, y: 256.036), duration: 0.5))
+                        GSAudio.sharedInstance.playSound(soundFileName: "Funk", fileExtension: "aiff")
                     case "pensandoRico":
                         myScene.alpha = 0
                         myScene.setScale(0.0)
@@ -92,7 +98,12 @@ public class DialogScene2: SKScene {
                         addChild(myScene)
                     }
                 }
-                labelDialog.text = dialogs.first
+                GSAudio.sharedInstance.playSound(soundFileName: "Tink", fileExtension: "aiff")
+                labelDialog.text = ""
+                for label in dialogs.first! {
+                    labelDialog.text! += "\(label)"
+                    RunLoop.current.run(until: Date()+0.03)
+                }
             }
         }
     }

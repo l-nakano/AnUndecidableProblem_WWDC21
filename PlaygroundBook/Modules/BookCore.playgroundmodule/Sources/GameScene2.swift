@@ -79,8 +79,12 @@ public class GameScene2: SKScene {
         confirmGame = self.childNode(withName: "Confirm") as? SKSpriteNode
         confirmGame.removeFromParent()
         labelDialog = self.childNode(withName: "labelFala") as? SKLabelNode
-        
-        labelDialog.text = dialogs.first
+        GSAudio.sharedInstance.playSound(soundFileName: "Tink", fileExtension: "aiff")
+        labelDialog.text = ""
+        for label in dialogs.first! {
+            labelDialog.text! += "\(label)"
+            RunLoop.current.run(until: Date()+0.03)
+        }
         currentRound = ""
 
         allScenesDic = ["preGame": [dialogBar, labelDialog, rascal], "knapProblem": [dialogBar, labelDialog, desesperate],
@@ -149,7 +153,12 @@ public class GameScene2: SKScene {
                     for myScene in allScenesDic[allScenesString.first!]! {
                         addChild(myScene)
                     }
-                    labelDialog.text = dialogs.first
+                    GSAudio.sharedInstance.playSound(soundFileName: "Tink", fileExtension: "aiff")
+                    labelDialog.text = ""
+                    for label in dialogs.first! {
+                        labelDialog.text! += "\(label)"
+                        RunLoop.current.run(until: Date()+0.03)
+                    }
                     currentRound = ""
                 }
                 else {
@@ -197,6 +206,7 @@ public class GameScene2: SKScene {
                             myScene.run(SKAction.scale(to: 1, duration: 0.5))
                             myScene.run(SKAction.fadeIn(withDuration: 0.3))
                             myScene.run(SKAction.move(to: CGPoint(x: 0.4, y: 196.946), duration: 0.5))
+                            GSAudio.sharedInstance.playSound(soundFileName: "Funk", fileExtension: "aiff")
                         case "janelaiOSm2":
                             myScene.alpha = 0
                             myScene.setScale(0.0)
@@ -205,6 +215,7 @@ public class GameScene2: SKScene {
                             myScene.run(SKAction.scale(to: 1, duration: 0.5))
                             myScene.run(SKAction.fadeIn(withDuration: 0.3))
                             myScene.run(SKAction.move(to: CGPoint(x: -11.196, y: 194.291), duration: 0.5))
+                            GSAudio.sharedInstance.playSound(soundFileName: "Funk", fileExtension: "aiff")
                         case "janelaGrafico":
                             myScene.alpha = 0
                             myScene.setScale(0.0)
@@ -213,6 +224,7 @@ public class GameScene2: SKScene {
                             myScene.run(SKAction.scale(to: 1.25, duration: 0.5))
                             myScene.run(SKAction.fadeIn(withDuration: 0.3))
                             myScene.run(SKAction.move(to: CGPoint(x: 0.4, y: 196.446), duration: 0.5))
+                            GSAudio.sharedInstance.playSound(soundFileName: "Funk", fileExtension: "aiff")
                         case "grafico2":
                             myScene.alpha = 0
                             myScene.setScale(0.0)
@@ -244,7 +256,12 @@ public class GameScene2: SKScene {
                         }
                     }
                     dialogs.remove(at: 0)
-                    labelDialog.text = dialogs.first
+                    GSAudio.sharedInstance.playSound(soundFileName: "Tink", fileExtension: "aiff")
+                    labelDialog.text = ""
+                    for label in dialogs.first! {
+                        labelDialog.text! += "\(label)"
+                        RunLoop.current.run(until: Date()+0.03)
+                    }
                 }
             }
         }
@@ -267,29 +284,39 @@ public class GameScene2: SKScene {
             if confirmGame.contains(pos) {
                 for item in itemsRound1 {
                     if item.Selected != item.isAnswer {
+                        currentRound = "round1Nok"
                         for myScene in allScenesDic[allScenesString.first!]! {
                             myScene.removeFromParent()
                         }
                         allScenesString.remove(at: 0)
-                        for myScene in allScenesDic["round1Nok"]! {
+                        for myScene in allScenesDic[currentRound]! {
                             addChild(myScene)
                         }
+                        GSAudio.sharedInstance.playSound(soundFileName: "Sosumi", fileExtension: "aiff")
                         dialogs.remove(at: 0)
-                        labelDialog.text = dialogsGames["round1Nok"]
-                        currentRound = "round1Nok"
+                        labelDialog.text = ""
+                        for label in dialogsGames[currentRound]! {
+                            labelDialog.text! += "\(label)"
+                            RunLoop.current.run(until: Date()+0.03)
+                        }
                         break
                     }
                     if item.Selected == item.isAnswer && item.Sprite == itemsRound1.last!.Sprite {
+                        currentRound = "round1Ok"
                         for myScene in allScenesDic[allScenesString.first!]! {
                             myScene.removeFromParent()
                         }
                         allScenesString.remove(at: 0)
-                        for myScene in allScenesDic["round1Ok"]! {
+                        for myScene in allScenesDic[currentRound]! {
                             addChild(myScene)
                         }
+                        GSAudio.sharedInstance.playSound(soundFileName: "Blow", fileExtension: "aiff")
                         dialogs.remove(at: 0)
-                        labelDialog.text = dialogsGames["round1Ok"]
-                        currentRound = "round1Ok"
+                        labelDialog.text = ""
+                        for label in dialogsGames[currentRound]! {
+                            labelDialog.text! += "\(label)"
+                            RunLoop.current.run(until: Date()+0.03)
+                        }
                     }
                 }
             }
@@ -321,8 +348,13 @@ public class GameScene2: SKScene {
                             addChild(myScene)
                         }
                         dialogs.remove(at: 0)
-                        labelDialog.text = dialogs.first
                         addChild(wAnswer)
+                        GSAudio.sharedInstance.playSound(soundFileName: "Sosumi", fileExtension: "aiff")
+                        labelDialog.text = ""
+                        for label in dialogs.first! {
+                            labelDialog.text! += "\(label)"
+                            RunLoop.current.run(until: Date()+0.03)
+                        }
                         break
                     }
                     if item.Selected == item.isAnswer && item.Sprite == itemsRound2.last!.Sprite {
@@ -334,8 +366,13 @@ public class GameScene2: SKScene {
                             addChild(myScene)
                         }
                         dialogs.remove(at: 0)
-                        labelDialog.text = dialogs.first
                         addChild(rAnswer)
+                        GSAudio.sharedInstance.playSound(soundFileName: "Blow", fileExtension: "aiff")
+                        labelDialog.text = ""
+                        for label in dialogs.first! {
+                            labelDialog.text! += "\(label)"
+                            RunLoop.current.run(until: Date()+0.03)
+                        }
                     }
                 }
             }
@@ -367,8 +404,13 @@ public class GameScene2: SKScene {
                             addChild(myScene)
                         }
                         dialogs.remove(at: 0)
-                        labelDialog.text = dialogs.first
                         addChild(wAnswer)
+                        GSAudio.sharedInstance.playSound(soundFileName: "Sosumi", fileExtension: "aiff")
+                        labelDialog.text = ""
+                        for label in dialogs.first! {
+                            labelDialog.text! += "\(label)"
+                            RunLoop.current.run(until: Date()+0.03)
+                        }
                         break
                     }
                     if item.Selected == item.isAnswer && item.Sprite == itemsRound3.last!.Sprite {
@@ -380,8 +422,13 @@ public class GameScene2: SKScene {
                             addChild(myScene)
                         }
                         dialogs.remove(at: 0)
-                        labelDialog.text = dialogs.first
                         addChild(rAnswer)
+                        GSAudio.sharedInstance.playSound(soundFileName: "Blow", fileExtension: "aiff")
+                        labelDialog.text = ""
+                        for label in dialogs.first! {
+                            labelDialog.text! += "\(label)"
+                            RunLoop.current.run(until: Date()+0.03)
+                        }
                     }
                 }
             }

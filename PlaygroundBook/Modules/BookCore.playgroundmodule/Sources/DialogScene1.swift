@@ -33,7 +33,8 @@ public class DialogScene1: SKScene {
         janelaiOS.removeFromParent()
         labelDialog.removeFromParent()
         dialogBar.removeFromParent()
-        labelDialog.text = dialogs.first
+        labelDialog.text = ""
+        
         allScenes = [[happy], [thinking], [desesperate], [normal], [janelaiOS, macintosh, happy], [janelaiOS, flash, happy], [normal], [happy]]
         
         let appearCyber = SKAction.run {
@@ -51,9 +52,14 @@ public class DialogScene1: SKScene {
             self.addChild(self.labelDialog)
             self.labelDialog.run(SKAction.fadeIn(withDuration: 1))
             self.dialogBar.run(SKAction.fadeIn(withDuration: 1))
+            GSAudio.sharedInstance.playSound(soundFileName: "Tink", fileExtension: "aiff")
         }
         let initialSequence = [SKAction.wait(forDuration: 2), appearCyber, SKAction.wait(forDuration: 1), moveCyber, SKAction.wait(forDuration: 1.3), appearDialog]
         self.run(SKAction.sequence(initialSequence))
+        for label in dialogs.first! {
+            labelDialog.text! += "\(label)"
+            RunLoop.current.run(until: Date()+0.03)
+        }
     }
     
     @objc static override public var supportsSecureCoding: Bool {
@@ -85,6 +91,7 @@ public class DialogScene1: SKScene {
                             myScene.run(SKAction.scale(to: 0.6, duration: 0.5))
                             myScene.run(SKAction.fadeIn(withDuration: 0.3))
                             myScene.run(SKAction.move(to: CGPoint(x: 324.9, y: 256.036), duration: 0.5))
+                            GSAudio.sharedInstance.playSound(soundFileName: "Funk", fileExtension: "aiff")
                         case "macintosh":
                             myScene.alpha = 0
                             myScene.setScale(0.0)
@@ -105,7 +112,12 @@ public class DialogScene1: SKScene {
                             addChild(myScene)
                         }
                     }
-                    labelDialog.text = dialogs.first
+                    GSAudio.sharedInstance.playSound(soundFileName: "Tink", fileExtension: "aiff")
+                    labelDialog.text = ""
+                    for label in dialogs.first! {
+                        labelDialog.text! += "\(label)"
+                        RunLoop.current.run(until: Date()+0.03)
+                    }
                 }
             }
         }
@@ -136,6 +148,6 @@ public class DialogScene1: SKScene {
     }
     
     override public func update(_ currentTime: TimeInterval) {
-
+        
     }
 }

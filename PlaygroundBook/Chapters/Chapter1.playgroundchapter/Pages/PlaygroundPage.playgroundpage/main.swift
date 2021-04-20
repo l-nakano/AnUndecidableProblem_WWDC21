@@ -40,6 +40,10 @@
  *A problem may demand decades, even centuries to be solved. It is up to people, aided by machines, to prepare themselves to find the solution for the existing problems, which can transform the future of the humankind.*
  */
 
+/*:
+ * Experiment: Press "Run My Code" to experience **An Undecidable Problem**.
+ */
+
 //#-hidden-code
 
 import PlaygroundSupport

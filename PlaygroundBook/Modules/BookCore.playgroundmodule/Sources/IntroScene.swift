@@ -44,7 +44,7 @@ public class IntroScene: SKScene {
             self.hideLabel.run(SKAction.fadeIn(withDuration: 1))
         }
         let sound = SKAction.run {
-            GSAudio.sharedInstance.playSound(soundFileName: "Start_Mac")
+            GSAudio.sharedInstance.playSound(soundFileName: "Start_Mac", fileExtension: "mp3")
         }
         let graph = SKAction.run {
             self.canGraph.toggle()

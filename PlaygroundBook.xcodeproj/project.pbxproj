@@ -33,6 +33,10 @@
 		AF869907262C9E7B00A2E00F /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF869906262C9E7B00A2E00F /* Sound.swift */; };
 		AF8977FC26237DC0004638CA /* GameScene2.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8977FB26237DC0004638CA /* GameScene2.swift */; };
 		AF89780126237E3D004638CA /* GameScene2.sks in Resources */ = {isa = PBXBuildFile; fileRef = AF89780026237E3D004638CA /* GameScene2.sks */; };
+		AFCD288B262E851F0043DE46 /* Blow.aiff in Resources */ = {isa = PBXBuildFile; fileRef = AFCD288A262E851F0043DE46 /* Blow.aiff */; };
+		AFCD2890262E867B0043DE46 /* Sosumi.aiff in Resources */ = {isa = PBXBuildFile; fileRef = AFCD288F262E867B0043DE46 /* Sosumi.aiff */; };
+		AFCD2895262E886E0043DE46 /* Funk.aiff in Resources */ = {isa = PBXBuildFile; fileRef = AFCD2894262E886E0043DE46 /* Funk.aiff */; };
+		AFCD289A262E8A390043DE46 /* Tink.aiff in Resources */ = {isa = PBXBuildFile; fileRef = AFCD2899262E8A390043DE46 /* Tink.aiff */; };
 		AFDE2ADF26269CF500AEE297 /* DialogScene1.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDE2ADE26269CF500AEE297 /* DialogScene1.swift */; };
 		AFDE2AE726269D3E00AEE297 /* DialogScene1.sks in Resources */ = {isa = PBXBuildFile; fileRef = AFDE2AE626269D3E00AEE297 /* DialogScene1.sks */; };
 /* End PBXBuildFile section */
@@ -165,6 +169,10 @@
 		AF869906262C9E7B00A2E00F /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		AF8977FB26237DC0004638CA /* GameScene2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene2.swift; sourceTree = "<group>"; };
 		AF89780026237E3D004638CA /* GameScene2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene2.sks; sourceTree = "<group>"; };
+		AFCD288A262E851F0043DE46 /* Blow.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Blow.aiff; sourceTree = "<group>"; };
+		AFCD288F262E867B0043DE46 /* Sosumi.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Sosumi.aiff; sourceTree = "<group>"; };
+		AFCD2894262E886E0043DE46 /* Funk.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Funk.aiff; sourceTree = "<group>"; };
+		AFCD2899262E8A390043DE46 /* Tink.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Tink.aiff; sourceTree = "<group>"; };
 		AFDE2ADE26269CF500AEE297 /* DialogScene1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogScene1.swift; sourceTree = "<group>"; };
 		AFDE2AE626269D3E00AEE297 /* DialogScene1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = DialogScene1.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -380,6 +388,10 @@
 		AF869910262C9F2E00A2E00F /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				AFCD2899262E8A390043DE46 /* Tink.aiff */,
+				AFCD2894262E886E0043DE46 /* Funk.aiff */,
+				AFCD288F262E867B0043DE46 /* Sosumi.aiff */,
+				AFCD288A262E851F0043DE46 /* Blow.aiff */,
 				AF2C089F262CAD5900BAE100 /* Start_Mac.mp3 */,
 			);
 			path = Sounds;
@@ -517,12 +529,16 @@
 				AF8698FA262C7DAB00A2E00F /* IntroScene.sks in Resources */,
 				447A265B2600305100C533BC /* GameScene1.sks in Resources */,
 				5EF2F97C2054B6E400191409 /* ManifestPlist.strings in Resources */,
+				AFCD2890262E867B0043DE46 /* Sosumi.aiff in Resources */,
 				AF89780126237E3D004638CA /* GameScene2.sks in Resources */,
+				AFCD2895262E886E0043DE46 /* Funk.aiff in Resources */,
 				AF0E50D52627B711009217A2 /* DialogScene2.sks in Resources */,
 				AF63C478262BE32D00B30777 /* thumbnail.png in Resources */,
 				AFDE2AE726269D3E00AEE297 /* DialogScene1.sks in Resources */,
 				5E551EC52371FC3F00784365 /* Assets.xcassets in Resources */,
 				5E086DCA2051DDAE004D8D25 /* LiveView.storyboard in Resources */,
+				AFCD289A262E8A390043DE46 /* Tink.aiff in Resources */,
+				AFCD288B262E851F0043DE46 /* Blow.aiff in Resources */,
 				AF2C08A0262CAD5900BAE100 /* Start_Mac.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

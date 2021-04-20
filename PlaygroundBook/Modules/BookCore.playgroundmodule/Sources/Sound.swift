@@ -17,9 +17,9 @@ class GSAudio: NSObject, AVAudioPlayerDelegate {
     var players = [NSURL:AVAudioPlayer]()
     var duplicatePlayers = [AVAudioPlayer]()
 
-    func playSound (soundFileName: String){
+    func playSound (soundFileName: String, fileExtension: String){
 
-        let soundFileNameURL = NSURL(fileURLWithPath: Bundle.main.path(forResource: soundFileName, ofType: "mp3")!)
+        let soundFileNameURL = NSURL(fileURLWithPath: Bundle.main.path(forResource: soundFileName, ofType: fileExtension)!)
 
         if let player = players[soundFileNameURL] { //player for sound has been found
 
@@ -53,7 +53,7 @@ class GSAudio: NSObject, AVAudioPlayerDelegate {
             }
         }
     }
-
+    
     func stopAll() {
       players.forEach { $0.1.stop() }
       duplicatePlayers.forEach { $0.stop() }
