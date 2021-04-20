@@ -26,7 +26,7 @@ But there are also positive consequences, influencing important fields, such as 
 
 # Swift Student Challenge - WWDC 2021 #
 
-This Playground, called *An Undecidable Problem*, was submitted to *Swift Student Challenge*, which is part of Apple WWDC 2021. It intends to show, cimply and uncomplicated, the **P versus NP problem**, known as one of the Millenium Prize Problems.
+This Playground, called *An Undecidable Problem*, was submitted to *Swift Student Challenge*, which is part of Apple WWDC 2021. It intends to show, simply and uncomplicated, the **P versus NP problem**, known as one of the Millenium Prize Problems.
 
 ## Notes ##
 
